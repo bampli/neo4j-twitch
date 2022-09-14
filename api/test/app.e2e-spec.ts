@@ -59,7 +59,7 @@ describe('AppController (e2e)', () => {
           });
       });
 
-      it('should return HTTP 200 successful on successful registration', () => {
+      it('should return HTTP 200 on successful registration', () => {
         return request(app.getHttpServer())
           .post('/auth/register')
           .set('Accept', 'application/json')

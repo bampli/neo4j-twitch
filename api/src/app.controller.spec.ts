@@ -9,6 +9,7 @@ describe('AppController', () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
       providers: [AppService],
+      exports: [AppController]
     }).compile();
 
     appController = app.get<AppController>(AppController);
@@ -16,7 +17,8 @@ describe('AppController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+      expect(appController).toBeDefined();
+      expect(appController.getHello()).toContain('Hello Neo4j User! There are');
     });
   });
 });
