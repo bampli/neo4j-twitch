@@ -1,0 +1,12 @@
+[build]
+base="./"
+command="./build.sh"
+functions="api/dist/serverless"
+publish="api/public"
+
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/main"
+  status = 200
+  force = true
