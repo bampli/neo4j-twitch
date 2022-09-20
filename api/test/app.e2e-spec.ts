@@ -28,16 +28,16 @@ describe('AppController (e2e)', () => {
     const password = Math.random().toString();
     let token, genreId;
 
-    afterAll(() =>
-      app.get(Neo4jService).write(
-        `
-            MATCH (u:User {email: $email})
-            FOREACH (s IN [ (u)-[:PURCHASED]->(s) ] | DETACH DELETE s)
-            DETACH DELETE u
-        `,
-        { email },
-      ),
-    );
+    // afterAll(() =>
+    //   app.get(Neo4jService).write(
+    //     `
+    //         MATCH (u:User {email: $email})
+    //         FOREACH (s IN [ (u)-[:PURCHASED]->(s) ] | DETACH DELETE s)
+    //         DETACH DELETE u
+    //     `,
+    //     { email },
+    //   ),
+    // );
 
     describe('POST /auth/register', () => {
       it('should validate the request', () => {
@@ -59,7 +59,7 @@ describe('AppController (e2e)', () => {
           });
       });
 
-      it('should return HTTP 200 successful on successful registration', () => {
+      it('should return HTTP 200 on successful registration', () => {
         return request(app.getHttpServer())
           .post('/auth/register')
           .set('Accept', 'application/json')
@@ -171,7 +171,7 @@ describe('AppController (e2e)', () => {
 
             res.body.forEach(row => {
               expect(Object.keys(row)).toEqual(
-                expect.arrayContaining(['id', 'name']),
+                expect.arrayContaining(['totalMovies', 'name']),
               );
             });
 
@@ -210,7 +210,7 @@ describe('AppController (e2e)', () => {
           .expect(res => {
             expect(res.body.id).toEqual(genreId);
             expect(res.body.popular).toBeInstanceOf(Array);
-            expect(res.body.popular.length).toEqual(5);
+            expect(res.body.popular.length).toEqual(4);
             expect(res.body.popular[0].popularity).toBeGreaterThanOrEqual(
               res.body.popular[0].popularity,
             );

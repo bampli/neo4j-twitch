@@ -24,7 +24,8 @@ export class GenreService {
             MATCH (u:User {id: $userId})-[:PURCHASED]->(s)-[:FOR_PLAN]->(p)
             WHERE s.expiresAt >= datetime() AND s.status = $status
 
-            OPTIONAL MATCH  (p)-[:PROVIDES_ACCESS_TO]->(g)<-[:IN_GENRE]-(m)
+            OPTIONAL MATCH  (p)-[:PROVIDES_ACCESS_TO]->(g)
+            OPTIONAL MATCH  (g)<-[:IN_GENRE]-(m)
             WHERE exists(m.poster)
 
             WITH p, g, m ORDER BY g.name, m.releaseDate DESC
@@ -42,6 +43,7 @@ export class GenreService {
       { userId, status: STATUS_ACTIVE },
     );
 
+    //console.log(res.records.length, res.records[0]);
     if (res.records.length == 0) {
       throw new UnauthorizedException('You have no active subscriptions');
     }
