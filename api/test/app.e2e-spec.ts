@@ -28,16 +28,16 @@ describe('AppController (e2e)', () => {
     const password = Math.random().toString();
     let token, genreId;
 
-    afterAll(() =>
-      app.get(Neo4jService).write(
-        `
-            MATCH (u:User {email: $email})
-            FOREACH (s IN [ (u)-[:PURCHASED]->(s) ] | DETACH DELETE s)
-            DETACH DELETE u
-        `,
-        { email },
-      ),
-    );
+    // afterAll(() =>
+    //   app.get(Neo4jService).write(
+    //     `
+    //         MATCH (u:User {email: $email})
+    //         FOREACH (s IN [ (u)-[:PURCHASED]->(s) ] | DETACH DELETE s)
+    //         DETACH DELETE u
+    //     `,
+    //     { email },
+    //   ),
+    // );
 
     describe('POST /auth/register', () => {
       it('should validate the request', () => {
@@ -171,7 +171,7 @@ describe('AppController (e2e)', () => {
 
             res.body.forEach(row => {
               expect(Object.keys(row)).toEqual(
-                expect.arrayContaining(['id', 'name']),
+                expect.arrayContaining(['totalMovies', 'name']),
               );
             });
 
