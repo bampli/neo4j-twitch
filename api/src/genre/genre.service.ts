@@ -43,7 +43,7 @@ export class GenreService {
       { userId, status: STATUS_ACTIVE },
     );
 
-    //console.log(res.records.length, res.records[0].get('p'));
+    //console.log(res.records.length, res.records[0]);
     if (res.records.length == 0) {
       throw new UnauthorizedException('You have no active subscriptions');
     }
