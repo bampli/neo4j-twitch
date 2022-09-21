@@ -1,7 +1,7 @@
 import React from 'react'
 import CypherTable from '../components/cypher/table'
 
-export default function Packages() {
+export default function Plans() {
     const cypher = `
         MATCH (g:Genre)
         WHERE g.name CONTAINS $query
@@ -21,9 +21,9 @@ export default function Packages() {
                 labels: [ (p)-[:PROVIDES_ACCESS_TO]->(g) | {
                     text: p.name,
                     class: 'label--'+ apoc.text.slug(toLower(g.name)),
-                    link: '/packages/'+ p.id
+                    link: '/plans/'+ p.id
                 } ]
-            } AS Packages,
+            } AS Plans,
             {
                 type: 'action',
                 class: 'ui primary basic button',

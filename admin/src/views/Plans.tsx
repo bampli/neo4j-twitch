@@ -1,21 +1,21 @@
 import React from 'react'
 import CypherTable from '../components/cypher/table'
 
-export default function Packages() {
+export default function Plans() {
     const cypher = `
-        MATCH (p:Package)
+        MATCH (p:Plan)
         WHERE p.name CONTAINS $query
         RETURN
             {
                 type: 'overview',
-                link: '/packages/'+ p.id,
+                link: '/plans/'+ p.id,
                 name: p.name,
                 icon: 'box',
                 caption: {
                     icon: 'dollar sign',
                     text:  p.price + ' for '+ p.duration.days +' days'
                 }
-            }  AS Package,
+            }  AS Plan,
             {
                 type: 'labels',
                 labels: [ (p)-[:PROVIDES_ACCESS_TO]->(g) | {
@@ -27,14 +27,14 @@ export default function Packages() {
             {
                 type: 'count',
                 //icon: 'users',
-                number: size((p)<-[:FOR_PACKAGE]-())
+                number: size((p)<-[:FOR_PLAN]-())
             } AS Subscribers,
             {
                 type: 'action',
                 class: 'ui primary basic button',
                 text: 'Edit',
                 icon: 'pencil',
-                link: '/packages/'+ p.id
+                link: '/plans/'+ p.id
             } AS actionEdit
         ORDER BY p.name
         SKIP $skip
@@ -42,6 +42,6 @@ export default function Packages() {
     `
 
     return (
-        <CypherTable cypher={cypher} limit={3} />
+        <CypherTable cypher={cypher} limit={20} />
     )
 }

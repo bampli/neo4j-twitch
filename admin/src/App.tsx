@@ -11,7 +11,7 @@ import Movie from './views/Movie'
 import Genres from './views/Genres'
 import GenreEdit from './views/GenreEdit'
 import Movies from './views/Movies'
-import Packages from './views/Packages'
+import Plans from './views/Plans'
 
 import { version } from '../package.json'
 
@@ -24,7 +24,7 @@ function App() {
             <Menu.Item as={Link} to="/" style={{padding: '0 1em 0 0'}}><img src={logo} alt="Neoflix" style={{width: '6em'}} /></Menu.Item>
             <Menu.Item as={Link} to="/movies">Movies</Menu.Item>
             <Menu.Item as={Link} to="/genres">Genres</Menu.Item>
-            <Menu.Item as={Link} to="/packages">Packages</Menu.Item>
+            <Menu.Item as={Link} to="/plans">Plans</Menu.Item>
           </Container>
         </Menu>
         <main className="ui main container">
@@ -34,7 +34,7 @@ function App() {
             <Route exact path="/movies" component={Movies} />
             <Route exact path="/genres" component={Genres} />
             <Route path="/genres/:id" component={GenreEdit} />
-            <Route exact path="/packages" component={Packages} />
+            <Route exact path="/plans" component={Plans} />
           </Switch>
         </main>
       </Router>
