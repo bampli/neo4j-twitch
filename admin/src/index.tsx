@@ -6,11 +6,9 @@ import 'semantic-ui-css/semantic.min.css'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { Neo4jProvider,
-  createDriver
-} from 'use-neo4j'
+import { Neo4jProvider, createDriver } from 'use-neo4j';
 
-const driver = createDriver('neo4j', 'localhost', 7687, 'neo4j', 'neo')
+const driver = createDriver('neo4j', '192.168.1.3', 7687, 'neo4j', 'test')
 
 ReactDOM.render(
   <React.StrictMode>
