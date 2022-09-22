@@ -1,7 +1,7 @@
 import React from 'react'
 import CypherTable from '../components/cypher/table'
 
-export default function Plans() {
+export default function Genres() {
     const cypher = `
         MATCH (g:Genre)
         WHERE g.name CONTAINS $query

@@ -55,10 +55,10 @@ export default function GenreEdit() {
     let fields
     let properties = {}
 
-    const metaData = meta.first?.get('value')[ label ]
+    const metaData = meta.first?.get('value')[label]
 
 
-    if ( fetch?.first ) {
+    if (fetch?.first) {
         properties = fetch.first.get('n').properties
     }
     else {
@@ -66,10 +66,10 @@ export default function GenreEdit() {
 
 
 
-    if ( metaData && metaData.properties ) {
+    if (metaData && metaData.properties) {
 
         // @ts-ignore
-        fields = Object.entries(metaData.properties).map(([ name, row ]) => EditField({ name, ...row, value: properties && properties[ name ] }))
+        fields = Object.entries(metaData.properties).map(([name, row]) => EditField({ name, ...row, value: properties && properties[name] }))
     }
 
 
@@ -77,12 +77,12 @@ export default function GenreEdit() {
     return (
         <Container>
             <Segment>
-            <Form>
-                <Header>{properties[ title ]}</Header>
-                {fields}
-            </Form>
-    <pre>{JSON.stringify(properties, null, 2)}</pre>
-    <pre>{JSON.stringify(metaData, null, 2)}</pre>
+                <Form>
+                    <Header>{properties[title]}</Header>
+                    {fields}
+                </Form>
+                <pre>{JSON.stringify(properties, null, 2)}</pre>
+                <pre>{JSON.stringify(metaData, null, 2)}</pre>
             </Segment>
         </Container>
     )
